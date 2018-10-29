@@ -1,0 +1,95 @@
+package kevinNichols;
+
+import java.util.Date;
+import java.util.Scanner;
+
+public class ShipDisplayLoopKevinNichols2 {
+
+	private static Object Scanner;
+
+	public static <string> void main(String[] args) {
+	Scanner input = new Scanner(System.in); //Creates scanner object for input
+	
+	//Declaration of variables
+	String shipID;
+	double shipWeight;
+	double shipVolume;
+	string shipOrigin;
+	string shipDestination;
+	double shipCost;
+	double shipmentsCount = 0;
+	double shipmentsCostTotal = 0;
+	
+	while (true) //Beginning of while loop with condition state as true
+		
+		System.out.println("Enter the Shipment ID: "); //Prompts user to enter shipID
+		shipID = input.next(); //Reads user input
+		
+		if (shipID.equalsIgnoreCase("END")) //Instructs computer to ignore entries ending with "END" or "end"
+			break;
+		
+			System.out.print("Enter Shipment's Origin: ");
+			shipOrigin = (string) input.next();
+		
+			System.out.print("Enter Shipemtns's Desitnation: ");
+			shipDestination = (string) input.next();
+		
+			System.out.print("Enter the Shipment's Weight: "); //Ask user for weight of shipment
+			shipWeight = input.nextDouble(); //Reads user's response
+		
+			System.out.print("Enter the Shipment's Volume"); //Ask user for volume of shipment
+			shipVolume = input.nextDouble(); //Reads user's response
+		
+		if (shipWeight<70 && shipVolume < 120){ //Checks condition of weight and volume.
+            
+			shipCost = shipWeight * 10 + shipVolume * 1.5; //Calculates this shipments current cost alone.
+			
+			
+			//Displays Shipment Information on user's screen
+			Date date = new Date(); //Creates an new date object
+			System.out.println("\nShpiment's I.D. Number: "
+		        	+ shipID
+		        	+ " Shipment's Origin "
+		        	+ shipOrigin
+		        	+ " Shipment's Destination "
+		        	+ shipDestination
+		        	+ " Shipment's Weight "
+		        	+ shipWeight
+		        	+ " Shipment's Volume "
+		        	+ shipVolume
+		        	+ " This Shipment's Cost: "
+		        	+ shipCost
+		        	+ " Total Cost of All Shipments: "
+		        	+ shipmentsCostTotal
+		        	+ date
+		        	+ "\n\n"
+		        	);
+			
+			//Adds processed shipment to the total of processed shipments
+			shipmentsCount++;
+			//Adds the cost of one shipment to the total cost of all shipments
+			shipmentsCostTotal += shipCost; 
+		
+	}
+		
+		 // Displays shipment count and the total cost of shipments to user's screen
+        Date date = new Date();  //retrieves the date object
+        System.out.println("\nShipment Count: "
+        	+ shipmentsCount
+        	+ " Shipping Total: "
+        	+ shipmentsCostTotal
+        	+ "\n\n" 
+        	+ "ShipmentDisplayLoopKevinNichols "
+        	+ date
+        	+ "\n\n"
+        	);
+		
+		
+		
+		
+		
+	
+
+	}
+
+}
