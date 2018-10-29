@@ -1,0 +1,142 @@
+/*This java program written by Carl Hardeman September 19 2018.
+**
+** This program reads the data items for an Account. I made it up.
+** It does the same kinds of actions as requested in your Program 3 Assignment.
+**
+** Using a while loop : do everything in the AccountDisplay program
+**   for a series of Accounts.
+** Stop the loop when the accountName entered is "END" or "end".
+** Ignore Accounts with a zero accountDeposit amount.
+** Count the number of processed Accounts and the total
+**   accountNewBalance
+**
+** Note this is an extreme version of AccountDisplayLoop
+**  which makes strong use of methods to demonstrate how much more
+**  readable a program is when organized into multiple methods.
+**
+*/
+
+import java.util.Date;
+import java.util.Scanner;
+
+public class AccountDisplayLoopMethodsExtreme
+{
+    public static void main(String[] args)
+    {
+     Scanner input = new Scanner(System.in);
+
+     String accountName;
+     int    accountNumber;
+     double accountDeposit;
+     double accountBalance;
+     double accountNewBalance;
+     int    accountCount = 0;
+     double accountDepositTotal = 0;
+
+
+     while (true)
+     {
+		accountName = getAccountName(input); // method call passes Scanner returns a String
+
+		if (accountName.equalsIgnoreCase("END"))
+     	break;       // end the loop if END or end entered
+
+     	accountNumber = getAccountNumber(input); // method call passes Scanner returns an int
+
+		accountBalance = getAccountBalance(input); // method call passed Scanner returns double
+
+		accountDeposit = getAccountDeposit(input); // method call passed Scanner returns double
+
+	 	accountNewBalance = getAccountNewBalance(accountBalance, accountDeposit); // passes bal and dep
+
+    	if (accountDeposit == 0)
+     	{   System.out.println("\nAccount Name: "
+        	+ accountName
+        	+ " Account Number: "
+        	+ accountNumber
+        	+ " <<<=== Account ignored zero deposit! \n\n"
+        	);
+			continue;
+		}   //end if statement
+
+		displayAccount(accountName, accountNumber, accountBalance,
+							  accountDeposit, accountNewBalance);
+
+        accountCount++;  // add 1 to count
+        accountDepositTotal += accountDeposit;  // add deposit to total
+
+	} // end while loop
+
+	// this method call happens after the while method completes
+
+	// call this method to display the account totals
+	displayAccountTotals(accountCount, accountDepositTotal);
+
+	}  // end main method
+
+	// begin list of called methods
+
+	public static String getAccountName(Scanner s)  // passed Scanner and returns a String
+	{
+	 	System.out.print("Enter Account Name as one word: ");
+     	return s.next();
+ 	} // end getAccountName method
+
+ 	public static int getAccountNumber(Scanner s)  // passed Scanner and returns an int
+	{
+		 System.out.print("Enter Account Number: ");
+	     return s.nextInt();
+ 	} // end getAccountNumber  method
+
+	public static double getAccountBalance(Scanner s)  // passed Scanner and returns a double
+		{
+			 System.out.print("Enter Account Balance with 2 decimal points: ");
+		     return s.nextDouble();
+	 	} // end getAccountBalance  method
+
+ 	public static double getAccountDeposit(Scanner s)  // passed Scanner and returns a double
+			{
+				 System.out.print("Enter Account Deposit with 2 decimal points: ");
+			     return s.nextDouble();
+	 	} // end getAccountDeposit  method
+
+	public static double getAccountNewBalance(double aBalance, double aDeposit)  // passed bal and dep returns double
+		{
+			     return aBalance + aDeposit;
+	 	} // end getAccountNewBalance  method
+
+	 public static void displayAccount(String aName, int aNumber, double aBalance,
+	 								   double aDeposit, double aNewB)
+	 	{
+		 Date date = new Date();  // get a Date object named date
+		 System.out.println("\nAccount Name: "
+			        	+ aName
+			        	+ " Account Number "
+			        	+ aNumber
+			        	+ " Old Balance: "
+			        	+ aBalance
+			        	+ " + Deposit: "
+			        	+ aDeposit
+			        	+ "\n = New Balance: "
+			        	+ aNewB    // may have lots of decimals until we learn more
+			        	+ "\n\n"  //  new line
+			        	+ date
+			        	+ "\n\n"  // new line
+        			);
+	 	} // end displayAccount  method
+
+	 	public static void displayAccountTotals(double aCount, double aTotal)
+	 	{
+			Date date = new Date();  // get a Date object named date
+			System.out.println("\nAccount Count: "
+			        	+ aCount
+			        	+ " Deposit Total: "
+			        	+ aTotal
+			        	+ "\n\n"  // new line
+			        	+ "AccountDisplayLoopExtreme "
+			        	+ date
+			        	+ "\n\n"  // new line
+			        	);
+	     } //end displayAccountTotals method
+
+}  // end AccountDisplayLoopMethodsExtreme class
